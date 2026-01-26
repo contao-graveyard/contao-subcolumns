@@ -170,7 +170,7 @@ class FormColPart extends Widget
         $strSCClass = $GLOBALS['TL_SUBCL'][$this->strSet]['scclass'];
         $blnInside = $GLOBALS['TL_SUBCL'][$this->strSet]['inside'];
 
-        $intCountContainers = \count($GLOBALS['TL_SUBCL'][$this->strSet]['sets'][$this->fsc_type]);
+        $intCountContainers = \count($GLOBALS['TL_SUBCL'][$this->strSet]['sets'][$this->fsc_type] ?? []);
 
         $strMiniset = '<div class="colsetexample '.$strSCClass.'">';
 
