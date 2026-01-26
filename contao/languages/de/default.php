@@ -1,0 +1,24 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Miscellaneous
+ */
+$GLOBALS['TL_LANG']['CTE']['subcolumn'] = 'Spaltenset';
+$GLOBALS['TL_LANG']['CTE']['subcolumns'] = ['Spaltenset','<img src="bundles/subcolumns/assets/example_de.png" alt="Beispiel für Spaltensets" style="float:right;" />Spaltensets ermöglichen es mehrere Spalten in das Layout einzufügen. Diese können dabei auch ineinander verschachtelt sein.'];
+$GLOBALS['TL_LANG']['CTE']['colsetStart'] = ['Spaltenset Start','Über das Startelement werden die Spaltensets definiert.<br />Beim Ändern der Spaltenzahl bzw. -breite, wird diese automatisch auf die Kindelemente übertragen.<br />Wird von einem zweispaltigen auf das Dreispaltige Layout gewechselt, wird automatisch ein Container hinzugefügt. Wird vom dreispaltigen auf ein zweispaltiges Layout gewechselt, wird autopmatisch ein Container gelöscht und der Inhalt des letzten Containers unter dem Spaltenset dargestellt.'];
+$GLOBALS['TL_LANG']['CTE']['colsetPart'] = ['Spaltenset Trennelemente','Hier können Sie keine Änderungen am Spaltenset vornehmen.<br /> WICHTIG: WIRD DIESES ELEMENT GELÖSCHT; WIRD AUCH DAS GESAMTE SPALTENSET GELÖSCHT!!'];
+$GLOBALS['TL_LANG']['CTE']['colsetEnd'] = ['Spaltenset Endelement','Hier können Sie keine Änderungen am Spaltenset vornehmen.<br /> WICHTIG: WIRD DIESES ELEMENT GELÖSCHT; WIRD AUCH DAS GESAMTE SPALTENSET GELÖSCHT!!'];
+
+$GLOBALS['TL_LANG']['MSC']['contentAfter'] = 'Inhalt für die %s Spalte nach diesem Element einfügen.';
+
+$GLOBALS['TL_LANG']['MSC']['sc_first'] = 'erste';
+$GLOBALS['TL_LANG']['MSC']['sc_second'] = 'zweite';
+$GLOBALS['TL_LANG']['MSC']['sc_third'] = 'dritte';
+$GLOBALS['TL_LANG']['MSC']['sc_fourth'] = 'vierte';
+$GLOBALS['TL_LANG']['MSC']['sc_fifth'] = 'fünfte';
+
+
+$GLOBALS['TL_LANG']['MSC']['sets']['yaml3'] = 'YAML3';
+$GLOBALS['TL_LANG']['MSC']['sets']['yaml4'] = 'YAML4';

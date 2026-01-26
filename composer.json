@@ -7,12 +7,12 @@
         "grid",
         "subcolumns"
     ],
-    "type": "contao-module",
+    "type": "contao-bundle",
     "license": "LGPL-3.0-or-later",
     "authors": [
         {
             "name": "Felix Pfeiffer",
-            "homepage": "http://www.felixpfeiffer.com/",
+            "homepage": "https://www.felixpfeiffer.com/",
             "role": "Developer"
         },
         {
@@ -26,27 +26,22 @@
         "source": "https://github.com/heimrichhannot/contao-subcolumns"
     },
     "require": {
-        "php": "^7.4 || ^8.0",
-        "contao/core-bundle": "^4.13 || ^5.2",
-        "contao-community-alliance/composer-plugin": "~2.4 || ~3.0",
-        "menatwork/contao-multicolumnwizard-bundle": "^3.3.7"
-    },
-    "conflict": {
-        "heimrichhannot/contao-subcolumns-bootstrap-bundle": "<1.13.0"
+        "php": "^8.3",
+        "contao/core-bundle": "^5.3",
+        "zoglo/contao-row-wizard": "^0.1"
     },
     "autoload": {
-        "classmap": [
-            ""
-        ]
-    },
-    "replace": {
-        "contao-legacy/subcolumns": "*"
+        "psr-4": {
+            "HeimrichHannot\\SubcolumnsBundle\\": "src/"
+        }
     },
     "extra": {
-        "contao": {
-            "sources": {
-                "": "system/modules/Subcolumns"
-            }
+        "contao-manager-plugin": "HeimrichHannot\\SubcolumnsBundle\\ContaoManager\\Plugin"
+    },
+    "config": {
+        "allow-plugins": {
+            "contao-components/installer": true,
+            "php-http/discovery": true
         }
     }
 }
