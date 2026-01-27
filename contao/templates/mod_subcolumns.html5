@@ -6,18 +6,18 @@
 <?php endif; ?>
 <div class="<?php echo $this->scclass; ?>">
 	<?php foreach($this->arrSet as $key=>$value): ?>
-	
+
 	<!-- <?php echo $key + 1 ?>. Column //-->
 	<div class="<?php echo $value[0]; ?>">
 		<?php if($this->useInside): ?>
 		<div class="<?php echo $value[1]; ?>"<?php if ($value[2]['left'] || $value[2]['right']) : ?> style="<?php if ($value[2]['right']): ?>padding-right:<?php echo $value[2]['right']; ?>;<?php endif; ?><?php if ($value[2]['left']): ?>padding-left:<?php echo $value[2]['left']; ?>;<?php endif; ?>"<?php endif; ?>>
 		<?php endif; ?>
-			<?php if(is_array($value['modules'])) : foreach($value['modules'] as $value): echo $value; endforeach; endif; ?>	
+			<?php if(is_array($value['modules'])) : foreach($value['modules'] as $value): echo $value; endforeach; endif; ?>
 		<?php if($this->useInside): ?></div><?php endif; ?>
 	</div>
 	<!-- <?php echo $key + 1 ?>. Column End //-->
 	<?php endforeach; ?>
-	
+
 </div>
 <!-- Spaltenset End //-->
 

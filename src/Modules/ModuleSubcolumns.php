@@ -69,7 +69,7 @@ class ModuleSubcolumns extends Module
 
         $arrColumns = unserialize($this->sc_modules);
 
-        if (1 === $this->sc_gapdefault && $useGap) {
+        if (1 === (int) $this->sc_gapdefault && $useGap) {
             $gap_value = '' !== $this->sc_gap ? $this->sc_gap : '12';
             $gap_unit = 'px';
 

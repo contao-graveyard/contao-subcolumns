@@ -113,7 +113,7 @@ class colsetStart extends ContentElement
 
         $blnUseInner = $GLOBALS['TL_SUBCL'][$this->strSet]['inside'];
 
-        if (1 === $this->sc_gapdefault && $useGap) {
+        if (1 === (int) $this->sc_gapdefault && $useGap) {
             $gap_value = '' !== $this->sc_gap ? $this->sc_gap : ($GLOBALS['TL_CONFIG']['subcolumns_gapdefault'] ?? 12);
             $gap_unit = 'px';
 
