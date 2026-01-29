@@ -58,7 +58,7 @@ $GLOBALS['TL_SUBCL'] = [
         'gap' => true, // A gap between the columns can be entered in backend
         'files' => [
             // Enter the location of the css files
-            'css' => 'bundles/subcolumns/assets/yaml3/subcols.css||static',
+            'css' => 'bundles/subcolumns/assets/yaml3/subcols.css|static',
             'ie' => 'bundles/subcolumns/assets/yaml3/subcolsIEHacks.css',
         ],
         /*
