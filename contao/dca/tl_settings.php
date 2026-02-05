@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
+use HeimrichHannot\SubcolumnsBundle\Util\tl_subcolumnsCallback;
+
 $GLOBALS['TL_DCA']['tl_settings']['fields']['subcolumns'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_settings']['subcolumns'],
     'inputType' => 'select',
-    'options_callback' => ['HeimrichHannot\SubcolumnsBundle\tl_subcolumnsCallback', 'getSets'],
+    'options_callback' => [tl_subcolumnsCallback::class, 'getSets'],
     'eval' => [
         'tl_class' => 'w50',
     ],

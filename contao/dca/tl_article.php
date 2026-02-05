@@ -2,4 +2,6 @@
 
 declare(strict_types=1);
 
-$GLOBALS['TL_DCA']['tl_article']['config']['oncopy_callback'][] = ['HeimrichHannot\SubcolumnsBundle\tl_subcolumnsCallback', 'articleCheck'];
+use HeimrichHannot\SubcolumnsBundle\Util\tl_subcolumnsCallback;
+
+$GLOBALS['TL_DCA']['tl_article']['config']['oncopy_callback'][] = [tl_subcolumnsCallback::class, 'articleCheck'];
