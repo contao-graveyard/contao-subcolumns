@@ -127,7 +127,7 @@ class FormColStart extends Widget
             return $this->Template->parse();
         }
 
-        $GLOBALS['TL_CSS']['subcolumns'] = 'bundles/subcolumns/assets/be_style.css';
+        $GLOBALS['TL_CSS']['subcolumns'] = 'bundles/contaosubcolumns/assets/be_style.css';
         $GLOBALS['TL_CSS']['subcolumns_set'] = $GLOBALS['TL_SUBCL'][$this->strSet]['files']['css'] ?: false;
 
         $arrColset = $GLOBALS['TL_SUBCL'][$this->strSet]['sets'][$this->fsc_type];

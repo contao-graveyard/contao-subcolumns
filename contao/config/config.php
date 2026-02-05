@@ -58,8 +58,8 @@ $GLOBALS['TL_SUBCL'] = [
         'gap' => true, // A gap between the columns can be entered in backend
         'files' => [
             // Enter the location of the css files
-            'css' => 'bundles/subcolumns/assets/yaml3/subcols.css|static',
-            'ie' => 'bundles/subcolumns/assets/yaml3/subcolsIEHacks.css',
+            'css' => 'bundles/contaosubcolumns/assets/yaml3/subcols.css|static',
+            'ie' => 'bundles/contaosubcolumns/assets/yaml3/subcolsIEHacks.css',
         ],
         /*
          * Define the sets that can be used as an array.
@@ -107,8 +107,8 @@ $GLOBALS['TL_SUBCL'] = [
         'inside' => true,
         'gap' => true,
         'files' => [
-            'css' => 'bundles/subcolumns/assets/yaml3/subcols_extended.css||static',
-            'ie' => 'bundles/subcolumns/assets/yaml3/subcolsIEHacks_extended.css',
+            'css' => 'bundles/contaosubcolumns/assets/yaml3/subcols_extended.css||static',
+            'ie' => 'bundles/contaosubcolumns/assets/yaml3/subcolsIEHacks_extended.css',
         ],
         'sets' => [
             '20x20x20x20x20' => [['c20l', 'subcl'], ['c20l', 'subc'], ['c20l', 'subc'], ['c20l', 'subc'], ['c20r', 'subcr']],
@@ -150,8 +150,8 @@ $GLOBALS['TL_SUBCL'] = [
         'inside' => true,
         'gap' => true,
         'files' => [
-            'css' => 'bundles/subcolumns/assets/yaml4/subcols.css||static',
-            'ie' => 'bundles/subcolumns/assets/yaml4/subcolsIEHacks.css',
+            'css' => 'bundles/contaosubcolumns/assets/yaml4/subcols.css||static',
+            'ie' => 'bundles/contaosubcolumns/assets/yaml4/subcolsIEHacks.css',
         ],
         'sets' => [
             '20x20x20x20x20' => [['ym-g20 ym-gl', 'ym-gbox-left'], ['ym-g20 ym-gl', 'ym-gbox'], ['ym-g20 ym-gl', 'ym-gbox'], ['ym-g20 ym-gl', 'ym-gbox'], ['ym-g20 ym-gr', 'ym-gbox-right']],
@@ -190,7 +190,7 @@ $GLOBALS['TL_SUBCL'] = [
         'inside' => true,
         'gap' => true,
         'files' => [
-            'css' => 'bundles/subcolumns/assets/yaml4/subcols_extended.css||static',
+            'css' => 'bundles/contaosubcolumns/assets/yaml4/subcols_extended.css||static',
         ],
         'sets' => [
             '20x20x20x20x20' => [['ym-g20 ym-gl', 'ym-gbox-left'], ['ym-g20 ym-gl', 'ym-gbox'], ['ym-g20 ym-gl', 'ym-gbox'], ['ym-g20 ym-gl', 'ym-gbox'], ['ym-g20 ym-gr', 'ym-gbox-right']],
