@@ -19,14 +19,6 @@ $GLOBALS['TL_DCA']['tl_form_field']['config']['ondelete_callback'][] = ['tl_form
 $GLOBALS['TL_DCA']['tl_form_field']['config']['oncopy_callback'][] = ['tl_form_subcols', 'scCopy'];
 
 /*
- * Operations
- */
-$GLOBALS['TL_DCA']['tl_form_field']['list']['operations']['edit']['button_callback'] = ['tl_form_subcols', 'showEditOperation'];
-$GLOBALS['TL_DCA']['tl_form_field']['list']['operations']['copy']['button_callback'] = ['tl_form_subcols', 'showCopyOperation'];
-$GLOBALS['TL_DCA']['tl_form_field']['list']['operations']['delete']['button_callback'] = ['tl_form_subcols', 'showDeleteOperation'];
-$GLOBALS['TL_DCA']['tl_form_field']['list']['operations']['toggle']['button_callback'] = ['tl_form_subcols', 'toggleIcons'];
-
-/*
  * Palettes
  */
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['__selector__'][] = 'fsc_gapuse';
@@ -437,50 +429,6 @@ class tl_form_subcols extends tl_form_field
         return null;
     }
 
-    /* Bearbeiten-Icon für Trenn- und Endelemente ausblenden */
-    public function showEditOperation($arrRow, $href, $label, $title, $icon, $attributes)
-    {
-        if ('formcolpart' !== $arrRow['type'] && 'formcolend' !== $arrRow['type']) {
-            $href .= '&amp;id='.$arrRow['id'];
-
-            return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
-        }
-
-        return null;
-    }
-
-    /* Kopier-Icon für Trenn- und Endelemente ausblenden */
-    public function showCopyOperation($arrRow, $href, $label, $title, $icon, $attributes)
-    {
-        if ('formcolpart' !== $arrRow['type'] && 'formcolend' !== $arrRow['type']) {
-            $href .= '&amp;id='.$arrRow['id'];
-
-            return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
-        }
-
-        return null;
-    }
-
-    /* Kopier-Icon für Trenn- und Endelemente ausblenden */
-    public function showDeleteOperation($arrRow, $href, $label, $title, $icon, $attributes)
-    {
-        if ('formcolpart' !== $arrRow['type'] && 'formcolend' !== $arrRow['type']) {
-            $href .= '&amp;id='.$arrRow['id'];
-
-            return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
-        }
-
-        return null;
-    }
-
-    /* Kopier-Icon für Trenn- und Endelemente ausblenden */
-    public function toggleIcons($arrRow, $href, $label, $title, $icon, $attributes)
-    {
-        if ('formcolpart' !== $arrRow['type'] && 'formcolend' !== $arrRow['type']) {
-            return $this->toggleIcon($arrRow, $href, $label, $title, $icon, $attributes);
-        }
-    }
-
     public function scCopy($intId, DataContainer $dc): void
     {
         if ('copy' === $this->Input->get('act') && 'formcolstart' === $objActiveRecord->type) {
@@ -585,33 +533,5 @@ class tl_form_subcols extends tl_form_field
         $this->Database->prepare('UPDATE tl_form_field SET sorting = sorting + ? WHERE pid=? AND sorting > ?')
                                     ->execute($ammount, $pid, $sorting)
         ;
-    }
-
-    public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
-    {
-        $security = System::getContainer()->get('security.helper');
-
-        // Check permissions AFTER checking the tid, so hacking attempts are logged
-        if (!$security->isGranted(ContaoCorePermissions::USER_CAN_EDIT_FIELD_OF_TABLE, 'tl_form_field::invisible'))
-        {
-            return '';
-        }
-
-        // Disable the button if the element type is not allowed
-        if (!$security->isGranted(ContaoCorePermissions::USER_CAN_ACCESS_FIELD_TYPE, $row['type']))
-        {
-            return Image::getHtml(str_replace('.svg', '--disabled.svg', $icon)) . ' ';
-        }
-
-        $href .= '&amp;id=' . $row['id'];
-
-        if ($row['invisible'])
-        {
-            $icon = 'invisible.svg';
-        }
-
-        $titleDisabled = (is_array($GLOBALS['TL_DCA']['tl_form_field']['list']['operations']['toggle']['label']) && isset($GLOBALS['TL_DCA']['tl_form_field']['list']['operations']['toggle']['label'][2])) ? sprintf($GLOBALS['TL_DCA']['tl_form_field']['list']['operations']['toggle']['label'][2], $row['id']) : $title;
-
-        return '<a href="' . $this->addToUrl($href) . '" title="' . StringUtil::specialchars(!$row['invisible'] ? $title : $titleDisabled) . '" data-title="' . StringUtil::specialchars($title) . '" data-title-disabled="' . StringUtil::specialchars($titleDisabled) . '" data-action="contao--scroll-offset#store" onclick="return AjaxRequest.toggleField(this,true)">' . Image::getHtml($icon, $label, 'data-icon="visible.svg" data-icon-disabled="invisible.svg" data-state="' . ($row['invisible'] ? 0 : 1) . '"') . '</a> ';
     }
 }
