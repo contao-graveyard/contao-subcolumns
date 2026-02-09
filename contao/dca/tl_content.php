@@ -305,14 +305,6 @@ class tl_content_sc extends tl_content
         return null;
     }
 
-    /* Kopier-Icon für Trenn- und Endelemente ausblenden */
-    public function toggleIcons($arrRow, $href, $label, $title, $icon, $attributes, $strTable, $arrRootIds, $arrChildRecordIds, $blnCircularReference, $strPrevious, $strNext)
-    {
-        if ('colsetPart' !== $arrRow['type'] && 'colsetEnd' !== $arrRow['type']) {
-            return parent::toggleIcon($arrRow, $href, $label, $title, $icon, $attributes);
-        }
-    }
-
     /* Toggle-Status auf Trenn und End-elemente anwenden */
     public function toggleAdditionalElements($varValue, $dc)
     {
