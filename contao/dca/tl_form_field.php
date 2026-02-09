@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Contao\DataContainer;
+use Contao\Image;
 use Contao\StringUtil;
 
 /*
@@ -435,43 +436,43 @@ class tl_form_subcols extends tl_form_field
     }
 
     /* Bearbeiten-Icon für Trenn- und Endelemente ausblenden */
-    public function showEditOperation($arrRow, $href, $label, $title, $icon, $attributes, $strTable, $arrRootIds, $arrChildRecordIds, $blnCircularReference, $strPrevious, $strNext)
+    public function showEditOperation($arrRow, $href, $label, $title, $icon, $attributes)
     {
         if ('formcolpart' !== $arrRow['type'] && 'formcolend' !== $arrRow['type']) {
             $href .= '&amp;id='.$arrRow['id'];
 
-            return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.$this->generateImage($icon, $label).'</a> ';
+            return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
         }
 
         return null;
     }
 
     /* Kopier-Icon für Trenn- und Endelemente ausblenden */
-    public function showCopyOperation($arrRow, $href, $label, $title, $icon, $attributes, $strTable, $arrRootIds, $arrChildRecordIds, $blnCircularReference, $strPrevious, $strNext)
+    public function showCopyOperation($arrRow, $href, $label, $title, $icon, $attributes)
     {
         if ('formcolpart' !== $arrRow['type'] && 'formcolend' !== $arrRow['type']) {
             $href .= '&amp;id='.$arrRow['id'];
 
-            return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.$this->generateImage($icon, $label).'</a> ';
+            return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
         }
 
         return null;
     }
 
     /* Kopier-Icon für Trenn- und Endelemente ausblenden */
-    public function showDeleteOperation($arrRow, $href, $label, $title, $icon, $attributes, $strTable, $arrRootIds, $arrChildRecordIds, $blnCircularReference, $strPrevious, $strNext)
+    public function showDeleteOperation($arrRow, $href, $label, $title, $icon, $attributes)
     {
         if ('formcolpart' !== $arrRow['type'] && 'formcolend' !== $arrRow['type']) {
             $href .= '&amp;id='.$arrRow['id'];
 
-            return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.$this->generateImage($icon, $label).'</a> ';
+            return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
         }
 
         return null;
     }
 
     /* Kopier-Icon für Trenn- und Endelemente ausblenden */
-    public function toggleIcons($arrRow, $href, $label, $title, $icon, $attributes, $strTable, $arrRootIds, $arrChildRecordIds, $blnCircularReference, $strPrevious, $strNext)
+    public function toggleIcons($arrRow, $href, $label, $title, $icon, $attributes)
     {
         if ('formcolpart' !== $arrRow['type'] && 'formcolend' !== $arrRow['type']) {
             return parent::toggleIcon($arrRow, $href, $label, $title, $icon, $attributes);
