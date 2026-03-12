@@ -2,11 +2,7 @@
 
 declare(strict_types=1);
 
-use Contao\CoreBundle\Security\ContaoCorePermissions;
 use Contao\DataContainer;
-use Contao\Image;
-use Contao\StringUtil;
-use Contao\System;
 
 /*
  * Table tl_form_field

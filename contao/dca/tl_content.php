@@ -452,7 +452,7 @@ class tl_content_sc extends tl_content
 
                 $arrColset = $GLOBALS['TL_SUBCL'][$strSet]['sets'][$sc_type];
 
-                $logger = System::getContainer()->get('logger');
+                $logger = System::getContainer()->get('monolog.logger.contao');
 
                 $logger->info('Values: sc-Type='.$sc_type.' Values: sc-Colset-Count='.count($arrColset).' :: SpaltensetHilfe clipboardCopy()');
 
@@ -469,7 +469,7 @@ class tl_content_sc extends tl_content
 
         $intColcount = count($arrColset) - 2;
 
-        $logger = System::getContainer()->get('logger');
+        $logger = System::getContainer()->get('monolog.logger.contao');
         $logger->info('ID= '.$objElement->id.' :: SpaltensetHilfe createColset()');
 
         /* Neues Spaltenset anlegen */
