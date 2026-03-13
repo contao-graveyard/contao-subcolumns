@@ -52,7 +52,7 @@ class colsetEnd extends ContentElement
 
         $arrColset = $GLOBALS['TL_SUBCL'][$this->strSet]['sets'][$this->sc_type] ?? null;
         if (null === $arrColset) {
-            return $this->Template->parse().'<div>HALLO</div>';
+            return $this->Template->parse();
         }
 
         $strSCClass = $GLOBALS['TL_SUBCL'][$this->strSet]['scclass'];
