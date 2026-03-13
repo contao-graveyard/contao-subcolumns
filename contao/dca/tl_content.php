@@ -138,11 +138,11 @@ class tl_content_sc extends tl_content
             $strEquilize = '{colheight_legend:collapsed},sc_equalize;';
         }
 
-        $GLOBALS['TL_DCA']['tl_content']['palettes']['colsetStart'] = '{type_legend},type;{colset_legend},sc_name,sc_type,sc_color'.$strGap.';'.$strEquilize.'{protected_legend:collapsed},protected;{expert_legend:collapsed},guests,invisible,cssID,space';
+        $GLOBALS['TL_DCA']['tl_content']['palettes']['colsetStart'] = '{type_legend},type;{colset_legend},sc_name,sc_type,sc_color'.$strGap.';'.$strEquilize.'{protected_legend:collapsed},protected;{expert_legend:collapsed},invisible,cssID,space';
     }
 
     /**
-     * Autogenerate an name for the colset if it has not been set yet.
+     * Autogenerate a name for the colset if it has not been set yet.
      * @param  object $varValue
      * @return string
      */
@@ -200,7 +200,6 @@ class tl_content_sc extends tl_content
         $arrSet = [
             'protected' => $dc->activeRecord->protected,
             'groups' => $dc->activeRecord->groups,
-            'guests' => $dc->activeRecord->guests,
         ];
 
         $this->Database->prepare('UPDATE tl_content %s WHERE pid=? AND sorting > ? AND sorting <= ?')->set($arrSet)->execute($dc->activeRecord->pid, $dc->activeRecord->sorting, $objEnd->sorting);
@@ -216,8 +215,8 @@ class tl_content_sc extends tl_content
         }
 
         $delRecord = $this->Database->prepare('SELECT * FROM tl_content WHERE id=?')
-                                                ->execute($dc->id)
-                                                ->fetchAssoc()
+            ->execute($dc->id)
+            ->fetchAssoc()
         ;
 
         if ('colsetStart' === $delRecord['type'] || 'colsetPart' === $delRecord['type'] || 'colsetEnd' === $delRecord['type']) {
@@ -309,7 +308,7 @@ class tl_content_sc extends tl_content
     public function toggleAdditionalElements($varValue, $dc)
     {
         if (0 !== $dc->id) {
-            $objEntry = $this->Database->prepare('UPDATE tl_content SET tstamp='.time().", invisible='".($varValue ? 1 : '')."' WHERE sc_parent=? AND type!=?")->execute($dc->id, 'colsetStart');
+            $objEntry = $this->Database->prepare('UPDATE tl_content SET tstamp='.time().", invisible='".($varValue ? 1 : 0)."' WHERE sc_parent=? AND type!=?")->execute($dc->id, 'colsetStart');
 
             return $varValue;
         }
@@ -327,11 +326,11 @@ class tl_content_sc extends tl_content
 
         if ('copy' === $this->Input->get('act') && 'colsetStart' === $dc->activeRecord->type) {
             $this->Database->prepare('UPDATE tl_content %s WHERE id=?')
-                        ->set([
-                            'sc_parent' => 0,
-                            'sc_childs' => '',
-                        ])
-                        ->execute($intId)
+                ->set([
+                    'sc_parent' => 0,
+                    'sc_childs' => '',
+                ])
+                ->execute($intId)
             ;
         }
 
@@ -353,8 +352,8 @@ class tl_content_sc extends tl_content
                 ];
 
                 $this->Database->prepare('UPDATE tl_content %s WHERE id=?')
-                                            ->set($arrSet)
-                                            ->execute($intId)
+                    ->set($arrSet)
+                    ->execute($intId)
                 ;
             }
 
@@ -372,8 +371,8 @@ class tl_content_sc extends tl_content
                 ];
 
                 $this->Database->prepare('UPDATE tl_content %s WHERE id=?')
-                                            ->set($arrSet)
-                                            ->execute($intId)
+                    ->set($arrSet)
+                    ->execute($intId)
                 ;
 
                 $arrChilds[] = $intId;
@@ -399,8 +398,8 @@ class tl_content_sc extends tl_content
                 ];
 
                 $this->Database->prepare('UPDATE tl_content %s WHERE id=?')
-                                            ->set($arrSet)
-                                            ->execute($intId)
+                    ->set($arrSet)
+                    ->execute($intId)
                 ;
 
                 $arrChilds[] = $intId;
@@ -410,8 +409,8 @@ class tl_content_sc extends tl_content
                 ];
 
                 $this->Database->prepare('UPDATE tl_content %s WHERE id=?')
-                                            ->set($arrSet)
-                                            ->execute($intNewParent)
+                    ->set($arrSet)
+                    ->execute($intNewParent)
                 ;
             }
         }
@@ -427,23 +426,23 @@ class tl_content_sc extends tl_content
     {
         if (!$isGrouped) {
             $objActiveRecord = $this->Database
-                    ->prepare('SELECT * FROM tl_content WHERE id = ?')
-                    ->executeUncached($intId)
+                ->prepare('SELECT * FROM tl_content WHERE id = ?')
+                ->executeUncached($intId)
             ;
 
             if ('colsetStart' === $objActiveRecord->type) {
                 $this->Database->prepare('UPDATE tl_content %s WHERE id=?')
-                            ->set([
-                                'sc_childs' => '',
-                                'sc_parent' => '',
-                                'sc_name' => 'colset.'.$objActiveRecord->id,
-                            ])
-                            ->execute($intId)
+                    ->set([
+                        'sc_childs' => '',
+                        'sc_parent' => '',
+                        'sc_name' => 'colset.'.$objActiveRecord->id,
+                    ])
+                    ->execute($intId)
                 ;
 
                 $objContent = $this->Database
-                            ->prepare('Select * FROM tl_content WHERE id=?')
-                            ->execute($intId)
+                    ->prepare('Select * FROM tl_content WHERE id=?')
+                    ->execute($intId)
                 ;
 
                 $strSet = $GLOBALS['TL_CONFIG']['subcolumns'] ?? null ?: 'yaml3';
@@ -502,9 +501,9 @@ class tl_content_sc extends tl_content
                 $arrSet['sc_sortid'] = $i;
 
                 $insertElement = $this->Database->prepare('INSERT INTO tl_content %s')
-                                                ->set($arrSet)
-                                                ->execute()
-                                                ->insertId
+                    ->set($arrSet)
+                    ->execute()
+                    ->insertId
                 ;
 
                 $arrChilds[] = $insertElement;
@@ -516,19 +515,19 @@ class tl_content_sc extends tl_content
             $arrSet['sc_sortid'] = $intColcount + 2;
 
             $insertElement = $this->Database->prepare('INSERT INTO tl_content %s')
-                                            ->set($arrSet)
-                                            ->execute()
-                                            ->insertId
+                ->set($arrSet)
+                ->execute()
+                ->insertId
             ;
 
             $arrChilds[] = $insertElement;
 
             $insertElement = $this->Database->prepare('UPDATE tl_content %s WHERE id=?')
-                                            ->set([
-                                                'sc_childs' => $arrChilds,
-                                                'sc_parent' => $objElement->id,
-                                            ])
-                                            ->execute($objElement->id)
+                ->set([
+                    'sc_childs' => $arrChilds,
+                    'sc_parent' => $objElement->id,
+                ])
+                ->execute($objElement->id)
             ;
 
             return true;
@@ -551,8 +550,8 @@ class tl_content_sc extends tl_content
                 ];
 
                 $this->Database->prepare('UPDATE tl_content %s WHERE id='.$v)
-                                            ->set($arrSet)
-                                            ->execute()
+                    ->set($arrSet)
+                    ->execute()
                 ;
             }
 
@@ -565,8 +564,8 @@ class tl_content_sc extends tl_content
             ];
 
             $this->Database->prepare('UPDATE tl_content %s WHERE id='.$intLastElement)
-                                        ->set($arrSet)
-                                        ->execute()
+                ->set($arrSet)
+                ->execute()
             ;
 
             return true;
@@ -579,15 +578,15 @@ class tl_content_sc extends tl_content
             for ($i = 1; $i <= $intDiff; ++$i) {
                 $intChildId = array_pop($arrChilds);
                 $this->Database->prepare('DELETE FROM tl_content WHERE id=?')
-                                            ->execute($intChildId)
+                    ->execute($intChildId)
                 ;
             }
 
             $this->Database->prepare('UPDATE tl_content %s WHERE id=?')
-                                            ->set([
-                                                'sc_childs' => $arrChilds,
-                                            ])
-                                            ->execute($objElement->id)
+                ->set([
+                    'sc_childs' => $arrChilds,
+                ])
+                ->execute($objElement->id)
             ;
 
             /* Andere Daten im Colset anpassen - Spaltenabstand und SpaltenSet-Typ */
@@ -600,8 +599,8 @@ class tl_content_sc extends tl_content
 
             foreach ($arrChilds as $value) {
                 $this->Database->prepare('UPDATE tl_content %s WHERE id=?')
-                                            ->set($arrSet)
-                                            ->execute($value)
+                    ->set($arrSet)
+                    ->execute($value)
                 ;
             }
 
@@ -612,8 +611,8 @@ class tl_content_sc extends tl_content
             $arrSet['type'] = 'colsetEnd';
 
             $this->Database->prepare('UPDATE tl_content %s WHERE id=?')
-                                            ->set($arrSet)
-                                            ->execute($intChildId)
+                ->set($arrSet)
+                ->execute($intChildId)
             ;
 
             return true;
@@ -633,8 +632,8 @@ class tl_content_sc extends tl_content
             $arrSet['type'] = 'colsetPart';
 
             $this->Database->prepare('UPDATE tl_content %s WHERE id=?')
-                                            ->set($arrSet)
-                                            ->execute($objEnd->id)
+                ->set($arrSet)
+                ->execute($objEnd->id)
             ;
 
             $intFscSortId = $objEnd->sc_sortid;
@@ -670,8 +669,8 @@ class tl_content_sc extends tl_content
                     $arrSet['sorting'] = $intSorting;
 
                     $objInsertElement = $this->Database->prepare('INSERT INTO tl_content %s')
-                                            ->set($arrSet)
-                                            ->execute()
+                        ->set($arrSet)
+                        ->execute()
                     ;
 
                     $insertElement = $objInsertElement->insertId;
@@ -690,8 +689,8 @@ class tl_content_sc extends tl_content
 
             foreach ($arrChilds as $value) {
                 $this->Database->prepare('UPDATE tl_content %s WHERE id=?')
-                                            ->set($arrData)
-                                            ->execute($value)
+                    ->set($arrData)
+                    ->execute($value)
                 ;
             }
 
@@ -702,19 +701,19 @@ class tl_content_sc extends tl_content
             $arrSet['sc_sortid'] = ++$intFscSortId;
 
             $insertElement = $this->Database->prepare('INSERT INTO tl_content %s')
-                                            ->set($arrSet)
-                                            ->execute()
-                                            ->insertId
+                ->set($arrSet)
+                ->execute()
+                ->insertId
             ;
 
             $arrChilds[] = $insertElement;
 
             /* Kindelemente in Startelement schreiben */
             $insertElement = $this->Database->prepare('UPDATE tl_content %s WHERE id=?')
-                                            ->set([
-                                                'sc_childs' => $arrChilds,
-                                            ])
-                                            ->execute($objElement->id)
+                ->set([
+                    'sc_childs' => $arrChilds,
+                ])
+                ->execute($objElement->id)
             ;
 
             return true;
@@ -726,7 +725,7 @@ class tl_content_sc extends tl_content
     private function moveRows($pid, $ptable, $sorting, int $ammount = 128): void
     {
         $this->Database->prepare('UPDATE tl_content SET sorting = sorting + ? WHERE pid=? AND ptable=? AND sorting > ?')
-                                    ->execute($ammount, $pid, $ptable, $sorting)
+            ->execute($ammount, $pid, $ptable, $sorting)
         ;
     }
 }
